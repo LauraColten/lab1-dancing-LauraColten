@@ -72,6 +72,9 @@ void dance_step(int dancer, int step) {
     int temp = cards[dancer] + cards[dancer + 1];
     cards[dancer] = temp / 2;
     cards[dancer + 1] = temp - cards[dancer];
+    if (cards[dancer + 1] != 1 || cards[dancer] != 1) {
+        stable = false;
+    }
 
     // show the final cards
     if(debug) std::cout << show_step(dancer) << std::endl;
@@ -94,6 +97,7 @@ int main(int argc, char *argv[]) {
     cards[0] = ncards;
     show_cards();
     for(int step=0; step<nsteps; step++) {
+        stable = true;
         for(int dancer=0; dancer<ndancers; dancer++){
             dance_step(dancer, step);
         }
