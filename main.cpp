@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -69,10 +70,12 @@ void dance_step(int dancer, int step) {
     if(debug) std::cout << "\t  "
                         << show_step(dancer) << " --> ";
     // balance the cards
-    int temp = cards[dancer] + cards[dancer + 1];
+    int dancer1 = cards[dancer];
+    int dancer2 = cards[dancer + 1];
+    int temp = dancer1 + dancer2;
     cards[dancer] = temp / 2;
     cards[dancer + 1] = temp - cards[dancer];
-    if (cards[dancer + 1] != 1 || cards[dancer] != 1) {
+    if (cards[dancer + 1] != dancer2 || cards[dancer] != dancer1) {
         stable = false;
     }
 
